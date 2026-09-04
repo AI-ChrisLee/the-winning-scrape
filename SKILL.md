@@ -1,6 +1,6 @@
 ---
 name: the-winning-scrape
-description: Use this every week to decide the video. It hunts what is winning with your buyers right now, ranks it against each channel's own baseline, and forks on one question: no idea yet, and it picks ONE winner and digs it out completely (transcript, thumbnail text, what the comments complained about); idea already in hand, and it dresses your idea in the title shapes that are winning. First run also sets your lane: the niche and the search vocabulary it reuses every week after.
+description: Use this every week to decide the video. It hunts what is winning with your buyers right now, ranks it against each channel's own baseline, and forks on one question: no idea yet, and it picks ONE winner and digs it out completely (transcript, thumbnail text, what the comments complained about); idea already in hand, and it dresses your idea in the title shapes that are winning. First run also sets your lane: the niche and the search vocabulary it reuses every week after. Use it a second way when the founder says "Stock my demo shelf", "write my demo shelf", or hands over the transcript of a job they recorded: that mode reads their own recording and writes the real screens their work produced into squad/screens.md, so next week's script is written to footage that already exists.
 ---
 
 # The Winning Scrape
@@ -13,14 +13,28 @@ over.
 Read `.claude/squad-roots.md` first, the per-repo instance file every member-run skill
 shares: founder name · brand words (the product word plus its banned synonyms) · accent
 color · lane · week · episodes · credibility-bank · face · thumb-cages · voice
-file · wpm (110 default) · data sources · tools (the research mode this repo has).
+file · wpm (110 default) · data sources · screens (the `shelf` mode writes that row the
+first time) · tools (the research mode this repo has).
 Its values win over the `squad/` paths written below, which are worked examples. The
 Winning Offer writes this file at the end of its run; fill any field you learn here
 (the lane, above all) and never re-ask for one it already answers. A repo carrying the
 legacy `.claude/spine-roots.md` keeps working: read that as the fallback when no
 squad-roots.md exists.
 
+## The two modes
+
+| Mode | What the founder says | What runs |
+|---|---|---|
+| `pick` (default) | "Run the Winning Scrape." | beats 1 to 7: this week's video, picked off other people's numbers and dug out |
+| `shelf` | "Stock my demo shelf.", or a job recording's transcript handed over | SHELF: the founder's OWN finished work read off one transcript into `squad/screens.md` |
+
+Never both in one session. `shelf` hunts nothing, reads no channel and ranks
+nothing; it is the supply line the Payoff Script asks for, and its own two-beat
+map sits in its section below.
+
 ## The run map (where you run, where you STOP)
+
+The `pick` mode.
 
 | Beat | Mode |
 |---|---|
@@ -51,12 +65,14 @@ is absent. Read the rest of that file too: its verbatim quotes and its `## BUYER
 section (the one standing record of real replies, DMs, and objections, which the Pipeline
 appends to) count as pasted buyer language, and its `## CHANNEL BASELINES` are the starting
 numbers HUNT re-verifies. Read `squad/credibility-bank.md` too when it exists: its receipts
-are the real figures DRESS can offer for the `[X]` slots. Weekly runs: when a Sunday Score
-card exists (`squad/score/`, or its path when the roots file names one), put the latest
-card in front of the founder in this same message, before question 1, and let their answer
-pick the branch; a proven winner of your own outranks a fresh hunt, and a flop's repackage
-counts as an idea in hand (DRESS). If the founder has real buyer replies, comments, or DMs,
-ask for 3-5 pasted in; real buyer language outranks everything you find.
+are the real figures DRESS can offer for the `[X]` slots. Weekly runs: read the last
+published row and the latest `## Sundays` row of `squad/content-log.md` (the roots file's
+`content log` row when it names one) and put both in front of the founder in this same
+message, before question 1, so the answer picks the branch off last week's result; a proven
+winner of your own outranks a fresh hunt, and a flop's repackage counts as an idea in hand
+(DRESS). No log file or no published row yet: skip it silently. If the founder has real
+buyer replies, comments, or DMs, ask for 3-5 pasted in; real buyer language outranks
+everything you find.
 
 **First run only** (no `squad/lane.md` yet): this run also sets THE LANE, the direction
 the channel fights in: the niche named plainly, and the search vocabulary (the 6+ queries
@@ -131,12 +147,44 @@ it. The Quota-dies flag is only for an API that failed mid-run.
 
 ## 4 · RANK
 
+**The loop line first, before anything is ranked.** Read the founder's own last published
+row in `squad/content-log.md`, resolve their channel from that row's video id (oEmbed), and
+print ONE line: the last pick, the shape it cloned (matched against `squad/lane.md`'s SHAPE
+TEMPLATES), the layer it was recorded on (the first line of that episode's `00_PREP.md`),
+and what it did against the founder's OWN baseline under the laws below. Anything not
+recorded prints `not recorded`, never a guess. That line is the whole of "gets better every
+week" in this lane: last week's result on screen at the moment this week's pick gets made.
+No log file, or no published row yet: say so in one line and move on.
+
 Two numbers; the first rules:
 
     breakout = views / the channel's own baseline
-    (baseline = median views of that channel's last 10-20 uploads)
+    (baseline = median views of that channel's last 10-20 comparable long-form uploads)
     subs multiple = views / subscribers (secondary; use alone only when uploads are
     unpullable, marked as the weaker read)
+
+**The baseline laws, stated once here.** Long-form means over 4 minutes. A one-minute
+vertical upload YouTube does not call a Short still drags a median far enough down to turn
+a loser into next week's winner: on the author's own channel the unfiltered median reads
+1,007.5 against a true 2,207.5, so every multiple comes back 2.19x too high.
+
+- **The founder's OWN channel: verify every upload's real duration on the watch page.**
+  Once per run, at the loop line. One channel, about fifteen requests, and it is the number
+  every multiple divides by. Wherever an API is installed in this run, never trust an
+  `is_short` field; read the duration. That field returns false for one-minute vertical
+  uploads and true for a zero-second live stream.
+- **A competitor's channel keeps the priced rule**: no duration filter, the median marked
+  approximate, real durations verified only for the top 3 candidates' channels. The RSS
+  feed carries no durations at all, and fifteen extra requests per channel is not worth
+  spending on a row nobody will pick.
+- **The 2026-08-24 seam: refuse, do not label.** On 2026-08-24 YouTube began counting a
+  view from the first frame, so a window straddling that date mixes two definitions of the
+  word. Print `baseline uncomputable, window straddles 2026-08-24` and rank that channel on
+  the flagged subs multiple. A caveat printed next to a number does not stop a founder
+  copying an inflated winner, and the pick is the one thing this skill protects.
+- **Under 8 comparable long-form uploads there is no distribution.** Print `baseline
+  uncomputable, N uploads` and rank on the flagged subs multiple. Same rule for a thin
+  competitor channel and for the founder's own.
 
 Discard below 0.5x. Discard bought reach: a spike with almost no likes or comments
 relative to its views, or a video running as an ad, is not a winner; drop it and say
@@ -228,7 +276,59 @@ branch-marked: DIG closes "Picked and dug. Packaging it is the Package's job, wr
 is the Payoff Script's, making it is the system's. This skill stops here." DRESS closes
 the same, opening "Dressed and dug." instead.
 
-## The outputs (two files, plus the survivor thumbnails)
+## SHELF · the founder's own screens (the `shelf` mode)
+
+The founder recorded a job they were doing anyway. This mode turns that recording
+into rows the next script can be written to. Two beats.
+
+| Beat | Mode |
+|---|---|
+| S1 READ | AUTO: the transcript in, the rows drafted, nothing written yet |
+| S2 SHELF | **STOP · GATE: the founder cuts the rows and answers the safety call on each survivor** |
+
+**Input, and there is only one.** A transcript path: `.txt`, `.md`, `.srt`, `.vtt`.
+The recording's own path too when the founder gives it, and it goes in the row so
+the file can be found later. A recording path with no transcript gets one line
+back naming the free local transcriber for their laptop (MacWhisper on a Mac,
+Buzz on Windows) and waits; nothing uploads and no transcript is made here. No
+transcript at all, no run: a row written off the founder's memory of a recording
+is exactly the invented screen this whole mode exists to kill.
+
+**What a row is.** One real moment the transcript proves happened: something
+finished, something broke, or the founder said out loud why they did what they
+did. The spoken reasons are the index, so a job the founder narrated comes back
+full and a silent job comes back nearly empty. Say that in one line rather than
+filling the file.
+
+Six columns, and every cell comes off the transcript or off the founder:
+
+    | Date | Time in the recording | On the screen | The file or URL behind it | Why it matters | Safe to show |
+
+The time comes from the transcript when it carries one (`.srt` and `.vtt` do); a
+plain `.txt` leaves that cell empty for the founder to fill, never estimated. The
+why line is the founder's own spoken reason, tightened, never written for them.
+A moment the transcript does not carry is not a row.
+
+**S2, the gate.** Print the drafted rows and stop.
+
+- The founder cuts every row they would not put in front of a stranger.
+- Every survivor gets the safety call, one word: `own` (an account or a file
+  that is yours), `sanitised` (names and numbers changed), or `permitted`
+  (written permission from the client). That answer fills the last column,
+  because the Payoff Script settles it before any beat gets drafted and this is
+  where it gets answered once, with the work still fresh.
+- A row nobody can put in any of those three buckets comes out.
+
+Then append the survivors to `squad/screens.md` (created on the first run with
+the header row, appended every run after, never rewritten), write the `screens`
+row into `.claude/squad-roots.md` the first time, and close, word for word:
+"On the shelf. The Payoff Script asks for your real step list and your safety
+call; this file is both answers. This skill stops here."
+
+Resume: the shelf IS the state. Rows already sitting in `squad/screens.md` mean
+that transcript is done, and it never gets read twice.
+
+## The outputs (three files, plus the survivor thumbnails)
 
 1. `squad/lane.md`: first run creates it; it holds still between runs and refreshes at
    season boundaries or when the seam shifts. Its template:
@@ -254,10 +354,14 @@ the same, opening "Dressed and dug." instead.
        this section is the tiebreaker and the fallback when the fresh hunt is thin,
        never a substitute for hunting.>
 
-2. `squad/week/YYYY-MM-DD-winner.md`: the winner file, every run. The handoff to the
-   Proven Package and the Payoff Script.
+2. `squad/week/YYYY-MM-DD-winner.md`: the winner file, every `pick` run. The handoff
+   to the Proven Package and the Payoff Script.
 
-The RANK checkpoint (`squad/week/YYYY-MM-DD-hunt.md`) is working state, not an output;
+3. `squad/screens.md`: the `shelf` mode only. One standing file, appended, never
+   rewritten, and the `screens` row it adds to `.claude/squad-roots.md` the first
+   time it writes.
+
+Nothing else gets written. The RANK checkpoint (`squad/week/YYYY-MM-DD-hunt.md`) is working state, not an output;
 HANDOVER folds it into the winner file and removes it. The candidate thumbnails HUNT
 downloads are not working state: the top 8-12 ranked survivors' jpgs stay in
 `squad/week/thumbs/<winner-date>/src/` (the folder the Proven Package already owns) as
@@ -274,9 +378,9 @@ that skill's cage-distillation input, and HANDOVER deletes only the unranked res
   any confirmed bought-reach spikes. Mixed-topic or mixed-format channels: median over
   comparable uploads only (long-form with long-form, same topic). Shorts are
   identifiable with one keyless test: fetching `youtube.com/shorts/<id>` returns the
-  short directly and redirects to `/watch` for long-form. Verify real durations only for
-  the top 3 candidates' channels, and mark any unfiltered median as approximate. Under
-  ~10 uploads: subs multiple only, flagged as the weaker read.
+  short directly and redirects to `/watch` for long-form. The duration floor, the seam
+  refusal and the 8-upload minimum are RANK's baseline laws; RANK states them once and this
+  list does not restate them.
 - Baseline uploads may be older than 90 days; only the WINNER pick must be recent.
 - **Channel stats unpullable** (zeroed counts, broken uploads list): keep the row's
   verifiable parts, mark the baseline uncomputable, rank on the flagged subs multiple.
@@ -328,6 +432,8 @@ that skill's cage-distillation input, and HANDOVER deletes only the unranked res
 - Buyer language wins ties: an angle answering a real pasted reply beats a higher
   multiple that answers none.
 - Clone the shape, never the words. The one-variable swap IS the difference.
+- The shelf carries no moment the transcript does not prove, and no screen the
+  founder has not called `own`, `sanitised` or `permitted`.
 - The one widen runs on RANK's ladder; RANK states it once, including what one notch
   is, and this list does not restate it.
 - Weekly. The lane file holds still between runs and refreshes at season boundaries or
